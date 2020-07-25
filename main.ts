@@ -1,9 +1,7 @@
-scene.onOverlapTile(SpriteKind.Food, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
-    tiles.placeOnRandomTile(mySprite, myTiles.transparency16)
-    mySprite.startEffect(effects.spray)
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
+    tiles.setTileAt(location, myTiles.transparency16)
 })
-let mySprite: Sprite = null
-mySprite = sprites.create(img`
+let mySprite = sprites.create(img`
     . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
     . 1 1 1 1 d d d d d d d 1 1 1 1 
     . . 1 1 d d d d d d d d d 1 1 1 
