@@ -3,7 +3,10 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "controller": "*"
+        "controller": "*",
+        "settings-blocks": "github:microsoft/pxt-settings-blocks#v1.0.0",
+        "storyboard": "*",
+        "animation": "*"
     },
     "files": [
         "main.blocks",

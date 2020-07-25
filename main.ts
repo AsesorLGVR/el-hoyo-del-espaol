@@ -1,7 +1,14 @@
+enum ActionKind {
+    Walking,
+    Idle,
+    Jumping
+}
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
     tiles.setTileAt(location, myTiles.transparency16)
+    mySprite.say("Buen trabajo", 1000)
 })
-let mySprite = sprites.create(img`
+let mySprite: Sprite = null
+mySprite = sprites.create(img`
     . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
     . 1 1 1 1 d d d d d d d 1 1 1 1 
     . . 1 1 d d d d d d d d d 1 1 1 
@@ -44,3 +51,4 @@ tiles.setTilemap(tiles.createTilemap(hex`080014000101000000000101010000000000000
     `, [myTiles.tile0,sprites.dungeon.floorLight5,sprites.dungeon.doorOpenNorth,sprites.dungeon.doorLockedEast,sprites.dungeon.doorLockedSouth,sprites.dungeon.collectibleRedCrystal], TileScale.Sixteen))
 tiles.placeOnRandomTile(mySprite, sprites.dungeon.doorOpenNorth)
 scene.cameraFollowSprite(mySprite)
+mySprite.say("obvio")
