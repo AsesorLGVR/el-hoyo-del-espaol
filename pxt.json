@@ -6,7 +6,10 @@
         "controller": "*",
         "settings-blocks": "github:microsoft/pxt-settings-blocks#v1.0.0",
         "storyboard": "*",
-        "animation": "*"
+        "animation": "*",
+        "corgio": "*",
+        "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.0.6",
+        "radio-broadcast": "*"
     },
     "files": [
         "main.blocks",
