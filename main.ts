@@ -3,10 +3,17 @@ enum ActionKind {
     Idle,
     Jumping
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleBlueCrystal, function (sprite, location) {
+    tiles.setTileAt(location, myTiles.transparency16)
+    mySprite.startEffect(effects.confetti)
+    info.changeScoreBy(1)
+    music.baDing.play()
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
     tiles.setTileAt(location, myTiles.transparency16)
-    mySprite.say("Buen trabajo", 1000)
+    mySprite.startEffect(effects.confetti)
     info.changeScoreBy(1)
+    music.baDing.play()
 })
 let mySprite: Sprite = null
 game.showLongText("EL HOYO", DialogLayout.Center)
@@ -47,31 +54,37 @@ let myEnemy = sprites.create(img`
     . . . f f f f f f f . . . . . . 
     `, SpriteKind.Enemy)
 controller.moveSprite(mySprite)
-tiles.setTilemap(tiles.createTilemap(hex`0800140001010000000001010100000000000001010400000000030101010100000101010100000000000001010000000000000101030000000004010101010000010101010000000000000101000000000000010104000000000301010101000001010101000000000000010100000000000001010300000000040101010100000101010100000000000001010200000000020101010000000501010101010101010101`, img`
-    2 2 . . . . 2 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 2 2 . . 2 2 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 2 2 . . 2 2 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 2 2 . . 2 2 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 2 2 . . 2 2 2 
-    2 . . . . . . 2 
-    2 . . . . . . 2 
-    2 2 . . . . 2 2 
-    2 2 2 2 2 2 2 2 
-    `, [myTiles.tile0,sprites.dungeon.floorLight5,sprites.dungeon.doorOpenNorth,sprites.dungeon.doorLockedEast,sprites.dungeon.doorLockedSouth,sprites.dungeon.collectibleRedCrystal], TileScale.Sixteen))
-tiles.placeOnRandomTile(mySprite, sprites.dungeon.doorOpenNorth)
+tiles.setTilemap(tiles.createTilemap(hex`1400190007070707070707070000000000000000000000000707070707070707000707090909090909090900000000000000000000000700000000000000000000000706060707070700070b0b09000009090909070000060607070700050709090900000000050b0000000101000000000101090b09090900090909000007010b00000000050100000000000000000500000001040000000003010009090909090909090700000101010000010101000000000000000000000000010000000000000100000000000000000000000701050000000000010b0909090509090900000000010300000000040109090b0909090b0900000000010101000001010100000000000000000007000001000000000000010500000000000000000000000105000000000b010909090900090909090000070104000000000301000000000000000000000000010101000001010105090509090905090007000001000000000000010b0905090509050900000005010b000000000b010909090905090909000000070103000000000401000000000000000000000000010101000001010105000b0005000b000b0b0000010b00000000000109000900090009000907000001020000000002010b0000000009090909000000010100000005010105000000000a0a0a090707080101010101010101090909090909090a00`, img`
+    2 2 2 2 2 2 2 2 . . . . . . . . . . . . 
+    2 2 2 2 2 2 2 2 . 2 2 2 2 2 2 2 2 2 2 . 
+    . . . . . . . . . . 2 . . . . . . . . . 
+    . . 2 . . 2 2 2 2 . 2 . . 2 . . 2 2 2 2 
+    2 . . . . 2 2 2 . . 2 2 2 2 . . . . . . 
+    . . . 2 2 . . . . 2 2 2 . 2 2 2 . 2 2 2 
+    . . 2 2 . . . . . . 2 . . . . . . . . . 
+    . . . 2 . . . . . . 2 . 2 2 2 2 2 2 2 2 
+    2 . . 2 2 2 . . 2 2 2 . . . . . . . . . 
+    . . . 2 . . . . . . 2 . . . . . . . . . 
+    . . 2 2 . . . . . . 2 . 2 2 2 . 2 2 2 . 
+    . . . 2 . . . . . . 2 2 2 . 2 2 2 . 2 . 
+    . . . 2 2 2 . . 2 2 2 . . . . . . . . . 
+    2 . . 2 . . . . . . 2 . . . . . . . . . 
+    . . . 2 . . . . . . 2 2 2 2 2 . 2 2 2 2 
+    . . 2 2 . . . . . . 2 . . . . . . . . . 
+    . . . 2 2 2 . . 2 2 2 . 2 . 2 2 2 . 2 . 
+    2 . . 2 . . . . . . 2 . 2 . 2 . 2 . 2 . 
+    . . . 2 . . . . . . 2 2 2 2 2 . 2 2 2 . 
+    . . 2 2 . . . . . . 2 . . . . . . . . . 
+    . . . 2 2 2 . . 2 2 2 . . . . . . . . . 
+    . . . 2 . . . . . . 2 2 . 2 . 2 . 2 . 2 
+    2 . . 2 . . . . . . 2 . . . . . 2 2 2 2 
+    . . . 2 2 . . . . 2 2 . . . . . . . . 2 
+    2 2 . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+    `, [myTiles.tile0,sprites.dungeon.floorLight5,sprites.dungeon.doorOpenNorth,sprites.dungeon.doorLockedEast,sprites.dungeon.doorLockedSouth,sprites.dungeon.collectibleRedCrystal,sprites.builtin.forestTiles29,sprites.builtin.brick,sprites.dungeon.doorClosedNorth,sprites.castle.rock2,sprites.castle.shrub,sprites.dungeon.collectibleBlueCrystal], TileScale.Sixteen))
+tiles.placeOnRandomTile(mySprite, sprites.dungeon.doorClosedNorth)
 scene.cameraFollowSprite(mySprite)
 mySprite.say("Obvio")
 info.setScore(0)
+info.startCountdown(180)
 mySprite.ay = 800
 myEnemy.follow(mySprite, 5)
